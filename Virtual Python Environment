@@ -1,0 +1,4 @@
+#This file is mainly for how to setup virtual python environment on Kali.
+sudo apt install python3-venv
+python3 -m venv ~/venvs/{virtual environment name} #Define the virtual environment name
+source ~/venvs/{virtual environment name}/activate #Activate the virtual environment
