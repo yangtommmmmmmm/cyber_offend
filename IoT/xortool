@@ -1,0 +1,8 @@
+xortool is used to find XOR key in firmware file.
+$python3 -m pip3 install xortool
+(Sometimes this package is installed in virtual environment)
+$xortool encrypted.bin--->show the suggested key length and key value, then setup xortool_out/ directory.
+$xortool encrypted.bin -l 8 -c 00--->use the 8-length key to analysis, then setup xortool_out/0.out file.
+$binwalk -t -e xortool_out/0.out--->use this command to generate the XOR key located in xortool_out/filename-key.csv.
+$cat xortool_out/filename-key.csv
+$python -c "print(b'\x88D\xa2\xd1h\xb4Z-'.hex())"--->transfer the XOR key to 16-hex form.
