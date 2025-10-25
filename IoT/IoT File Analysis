@@ -1,0 +1,8 @@
+This sector is mainly discussed for how to get the specific file/content in firmware.
+
+1.Find the specific file in firmware bin:
+$find . -iname {firmware bin file} -ls
+$grep -nir {keyword} {firmware bin file directory}
+
+2.Find the specific file content in firmware bin:
+$grep -nir {keyword} {firmware bin file}
