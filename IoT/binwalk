@@ -1,29 +1,29 @@
-1. $binwalk -{param} {bin_file}
+$binwalk -{param} {bin_file}
 
-1-1. param:
-1-1-1.-t/--term:simple analysis the data structure for bin file, no extract file.
-1-1-2.-e/--extract:further analysis the bin file, then extract file to bin_file.extracted/ directory.
-1-1-3.-C:define the output directory for the analysis result.
-1-1-4.-E:analysis which sector data is compressed, encoded or encrypted.(Sometimes it probably occurs error owing to the environment variable-NUMBLE,
+1. param:
+1-1.-t/--term:simple analysis the data structure for bin file, no extract file.
+1-2.-e/--extract:further analysis the bin file, then extract file to bin_file.extracted/ directory.
+1-3.-C:define the output directory for the analysis result.
+1-4.-E:analysis which sector data is compressed, encoded or encrypted.(Sometimes it probably occurs error owing to the environment variable-NUMBLE,
 so using export command to disable it.)
 low entrophy:means the distribution of data is regular, the sector data is low-level compressed/encoded or stream cipher.
 high entrophy:means the distribution of data is irregular, the sector data is high-level compressed/encoded or high-level cipher.
 
-1-2.If the bin_file is XOR encrypted, we could follow below steps to decrypt:
-1-2-1.First, analysis the data structure of bin file to check whether bin file is XOR encrypted/encoded/full-compress or not: 
+2.If the bin_file is XOR encrypted, we could follow below steps to decrypt:
+2-1.First, analysis the data structure of bin file to check whether bin file is XOR encrypted/encoded/full-compress or not: 
 $binwalk -t encrypted.bin
 --->If the result of above command doesn't show any information related to compressed/encoded way, we could determine
     the bin file is XOR encrypted/encoded/full-compress.
-1-2-2.Do the 16-hex analysis for the file to find the irregular data:
+2-2.Do the 16-hex analysis for the file to find the irregular data:
 $hexdump -v -C encrypted.bin
-1-2-3.Do entrophy analysis to determine whether the data for file is high or low-level for encrypted/encoded/compressed.
+2-3.Do entrophy analysis to determine whether the data for file is high or low-level for encrypted/encoded/compressed.
 $binwalk -E encrypted.bin
-1-2-4.To find and get the most frequently occuring 16-hex data segment.This segment is probably a XOR key!
+2-4.To find and get the most frequently occuring 16-hex data segment.This segment is probably a XOR key!
 $hexdump -v -C encrypted.bin | cut -d" " -f3-20 | sort | uniq -c | sort -nr | head -n 20
-1-2-5.Run the xcat.py to decrypt the file:
+2-5.Run the xcat.py to decrypt the file:
 $chmod +x xcat.py
 $./xcat.py -x <xor_key> encrypted.bin > decrypted.bin
-1-2-6.Analysis the data structure of decrypted.bin file:
+2-6.Analysis the data structure of decrypted.bin file:
 $binwalk -t decrypted.bin
 
 
