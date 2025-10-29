@@ -1,0 +1,32 @@
+How to judge the which web services are enabled on the target?
+As u have finished scanning, u could get the information about the port that target enable.
+
+80/8080:HTTP/Web Service
+443:HTTPS/Web Service
+
+Then,if u need to judge whether web is wordpress platform or not, u could follow below command:
+$ whatweb <URL>
+
+Next, we could use below tools to enumerate the web path to find the entry easily attacked for us.
+1.gobuster:
+The parameter for gobuster:
+1-1.-u (--url):the specific URL
+1-2.-w:specify the dictionary for cracking the web path.
+./usr/share/dirb/wordlists/common.txt
+./usr/share/dirb/wordlists/big.txt
+.the file in /usr/share/wordlists/dirbuster/
+
+*If u would like to use big.txt to crack, u need to add -p pattern. Because the form of 
+big.txt is different from any else dictionary files.
+
+*If the dictionary for cracking web path only has 'admin',it will lose the web path file
+'admin.php'. So u need to notice it!
+
+1-3.-r:request a redirect URL (301、302) for collecting.
+1-4.-f:request a client-issue URL (403、404) for collecting.
+1-5.-x:specify the file extension. -x aspx,jsp,php.
+
+2.feroxbuster:
+The installation package path:
+https://github.com/epi052/feroxbuster
+The parameter for feroxbuster is almost as same as gobuster.
