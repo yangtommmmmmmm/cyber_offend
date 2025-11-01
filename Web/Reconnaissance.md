@@ -6,6 +6,7 @@ As u have finished scanning, u could get the information about the port that tar
 
 Then,if u need to judge whether web is wordpress platform or not, u could follow below command:
 $ whatweb <URL>
+<img width="894" height="83" alt="image" src="https://github.com/user-attachments/assets/d09656dc-5db5-4349-bb8f-5efa5fcc3313" />
 
 Next, we could use below tools to enumerate the web path to find the entry easily attacked for us.
 1.gobuster:
