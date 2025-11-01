@@ -31,3 +31,4 @@ The installation package path:
 https://github.com/epi052/feroxbuster
 The parameter for feroxbuster is almost as same as gobuster. The common feroxbuster command for gathering is below:
 $ feroxbuster -n --url <URL>
+
