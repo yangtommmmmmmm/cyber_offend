@@ -18,3 +18,8 @@ https://wpscan.com/api/
 
 1-4.After enumerating, we could find the vulnerability for below section:(Important!!!!!!!)
 Core、Theme、Plugin
+
+2.Path Enumeration:
+
+2.1.gobuster
+2.2.feroxbuster
