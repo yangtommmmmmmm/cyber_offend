@@ -1,6 +1,7 @@
 This .md is for introducing how to trigger BurpSuite tool.
 
 Step1.Trigger BurpSuite.
+
 <img width="631" height="42" alt="image" src="https://github.com/user-attachments/assets/746e2216-de93-4e14-b8ef-754f41d17da0" />
 
 Step2.Neglect below warning.
@@ -12,9 +13,11 @@ Step3.Directly click 'Temporary project'->'Next'.
 <img width="458" height="289" alt="image" src="https://github.com/user-attachments/assets/984960cc-aafd-4256-b5ba-fd32eb7bba3c" />
 
 Step4.Directly click 'Use Burp defaults'->'Start Burp'.
+
 <img width="433" height="272" alt="image" src="https://github.com/user-attachments/assets/ee9c5c5d-24d7-4b4d-b02b-f162f28827e7" />
 
 Step5.Finally, we could get the UI for BurpSuite.
+
 <img width="497" height="301" alt="image" src="https://github.com/user-attachments/assets/7be6c293-06e5-4dc2-9f10-a1b9fa68993a" />
 
 Step6.After triggering, we click 'Proxy'->'Intercept' to let BurpSuite to capture the message between the client and server.Then,
