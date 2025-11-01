@@ -34,5 +34,28 @@ https://github.com/epi052/feroxbuster
 The parameter for feroxbuster is almost as same as gobuster. The common feroxbuster command for gathering is below:
 $ feroxbuster -n --url <URL>
 
+If we enumerate the directory related to robots.txt and sitemap.xml, we could disclose more
+secret for the web server:
+.robots.txt:save url paths that web administrator wouldn't hope web users to browse.
+.sitemap.xml:save url paths that web administrator provides publicly.
+
+
+--------------------------------------------------------------------------------------------------------------------
+We could use curl command to get some information related to web server:
+3.$ curl <options> URL
+3-1.-O:'GET'Request
+3-2.-k:bypass the authentication
+3-3.-v:Get HTTP/HTTPS Request/Response Header/Body Parameter
+3-4.-vvv:Get the more detailed info
+3-5.-A:represent User-Agent
+3-6.-b:represent Cookie-Id
+3-7.-X PUT:'PUT' Request
+3-8.-X POST:'POST' Request
+3-9.-X DELETE:'DELETE' Request
+3-10.-H:Specify the format of the request-
+.Content-Type:define the content format, ex:Content-Type:text/html
+.Media-Type:define the media format, ex:Media-Type:application/pdf
+.Content-Length:define the length of message
+.Content-Encoding:define the encoding way, ex:Content-Encoding:gzip
 
 
