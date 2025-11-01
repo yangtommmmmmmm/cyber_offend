@@ -1,0 +1,3 @@
+As we browse the target web server, we couldn't get any response from it.
+It probably results from the DNS resolve issue. So we need to modify the '/etc/hosts' file
+to let DNS resolve our target url from which we request the resource.
