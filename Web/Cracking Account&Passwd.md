@@ -6,7 +6,7 @@ If u crack out the login page, you could do below way to crack out login account
 
 <img width="1454" height="803" alt="image" src="https://github.com/user-attachments/assets/c0016c25-f9ae-48e8-9caf-5b4b40bea244" />
 
-If we would like to crack account/password for above wp-login.php, we could use below ways:
+For example, if we would like to crack account/password for above wp-login.php, we could use below ways:
 
 1.BurpSuite Tool:
 
@@ -37,3 +37,24 @@ Step6.Finally, u could get the cracking result as belows:
 <img width="539" height="238" alt="image" src="https://github.com/user-attachments/assets/9aad52b2-2452-495e-b021-b28b4e06c545" />
 
 As above results, as password is 'password', the server response 302 status to us, so we could infer that the password for admin is 'password'.
+
+
+
+
+2.wpscan:
+
+This command is only for WordPress web.
+
+$wpscan --url {URL} -U {specific account or the dictionary for account} -P {specific password or the dictionary for password}
+
+Specially, the dictionary for password:
+
+./usr/share/seclists/Passwords/500-worst-passwords.txt
+
+./usr/share/wordlists/rockyou.txt
+
+The dictionary for account:
+
+./usr/share/wordlists/dirb/others/names.txt
+
+./usr/share/wordlists/rockyou.txt
