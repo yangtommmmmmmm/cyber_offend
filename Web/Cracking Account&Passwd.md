@@ -53,6 +53,8 @@ Specially, the dictionary for password:
 
 ./usr/share/wordlists/rockyou.txt
 
+.Wordlists/Passwords.txt--->For CPENT
+
 The dictionary for account:
 
 ./usr/share/wordlists/dirb/others/names.txt
