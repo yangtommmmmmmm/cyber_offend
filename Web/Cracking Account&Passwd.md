@@ -62,3 +62,20 @@ The dictionary for account:
 ./usr/share/wordlists/rockyou.txt
 
 .Wordlists/Usernames.txt--->For CPENT
+
+
+3.ZAP Tool:
+
+https://www.zaproxy.org/
+
+
+4.ffuf Tool:
+
+https://github.com/ffuf/ffuf
+
+
+5.wfuzz Tool:
+
+https://github.com/xmendez/wfuzz
+
+
