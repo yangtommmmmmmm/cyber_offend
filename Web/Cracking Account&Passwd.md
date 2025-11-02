@@ -18,18 +18,22 @@ Step2.After enabling, u submit account/password to wp-login.php. Then, u could o
 
 
 Step3.Then, right click on this request,click 'Send to Intruder'.
+
 <img width="519" height="303" alt="image" src="https://github.com/user-attachments/assets/15cb413e-85ca-4d13-aa25-02b25a8eccfa" />
 
 
-Step4.Into the Intruder interface, choice the account or password value u would like to crack. After choicing, click
-'Add button'.
+Step4.Into the Intruder interface, choice the password value u would like to crack. After choicing, click
+'Add button'. (Assume we know the account is admin)
 
 <img width="657" height="223" alt="image" src="https://github.com/user-attachments/assets/0e8204d7-faf2-477c-9eb1-2721f40d8301" />
 
 
-Step5.Next, click 'Intruder->Payload', input the account/password (located in rockyou.txt) to test.
+Step5.Next, click 'Intruder->Payload', input the password (located in rockyou.txt) to test.
 <img width="428" height="443" alt="image" src="https://github.com/user-attachments/assets/30763c5e-6b07-4c2c-bfe2-bd25328b4266" />
 
 
 Step6.Finally, u could get the cracking result as belows:
+
 <img width="539" height="238" alt="image" src="https://github.com/user-attachments/assets/9aad52b2-2452-495e-b021-b28b4e06c545" />
+
+As above results, as password is 'password', the server response 302 status to us, so we could infer that the password for admin is 'password'.
