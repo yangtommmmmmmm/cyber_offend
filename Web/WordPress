@@ -24,4 +24,11 @@ Core、Theme、Plugin
 2.1.gobuster
 2.2.feroxbuster
 
+If you got below wordpress path, you could do further thing to find the vulnerability:
+.wp-login.php
+.wp-admin
+.phpmyadmin.php
+.robots.txt
+.sitemap.xml
+
 3.curl Enumeration
