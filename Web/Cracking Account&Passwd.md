@@ -60,3 +60,5 @@ The dictionary for account:
 ./usr/share/wordlists/dirb/others/names.txt
 
 ./usr/share/wordlists/rockyou.txt
+
+.Wordlists/Usernames.txt--->For CPENT
