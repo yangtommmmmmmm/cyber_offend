@@ -22,6 +22,7 @@ Step5.Finally, we could get the UI for BurpSuite.
 
 Step6.After triggering, we click 'Proxy'->'Intercept' to let BurpSuite to capture the message between the client and server.Then,
 also inspecting what port BurpSuite use by clicking 'Proxy'->'Options'.
+
 <img width="499" height="289" alt="image" src="https://github.com/user-attachments/assets/81157622-e0a0-4f3c-b65a-e89d1b1e2fca" />
 <img width="599" height="211" alt="image" src="https://github.com/user-attachments/assets/3326db4d-737e-4df3-953d-0aa13746d4da" />
 
@@ -35,6 +36,7 @@ below.
 
 Step7-3.Click 'Network Settings', then click 'Connection Settings'. Finally. click
 'Manual proxy configuration' to modify HTTP Proxy and SOCKS Host. The modified info shows below:
+
 <img width="586" height="493" alt="image" src="https://github.com/user-attachments/assets/ced9946a-583c-4ef9-8cdf-aef54789ff7a" />
 
 
