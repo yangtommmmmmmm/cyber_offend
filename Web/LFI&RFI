@@ -1,0 +1,12 @@
+LFI Attack is Local File Inclusion Attack. It's mainly talking about how to use local file on server to do further attack, contains disclose sensitive info
+or RCE.
+
+RFI is Remote File Inclusion Attacker. It's mainly taking about how to use remote file located on itself host to do further attack.
+
+1.LFI Attacker Form:
+
+1-1.Uploading malicious file:
+We could upload malicious file on target server.Then, do below attack:
+{URL}?../../../../../{malicious file name}---->This attacker is also called "File Uploading Attack"
+
+1-2.Log Poisoning:
