@@ -14,6 +14,7 @@ The parameter for gobuster:
 1-1.-u (--url):the specific URL
 1-2.-w:specify the dictionary for cracking the web path.
 ./usr/share/dirb/wordlists/common.txt
+./usr/share/dirb/wordlists/dirb/common.txt
 ./usr/share/dirb/wordlists/big.txt
 .the file in /usr/share/wordlists/dirbuster/
 
