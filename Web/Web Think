@@ -1,0 +1,2 @@
+As you do pentest attack for web server, u should think not only u only inputs your payload on the web page, but also inputs
+it by "curl" command!!!
