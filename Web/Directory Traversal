@@ -1,7 +1,7 @@
 Directory Traversal Attack ---> The file related to "service" ---> Sensitive Info (Credentials)
 
-1.Base form for Linux: {URL}?../../../../../{File with sensitive info}
-  Base form for Windows: {URL}?..\..\..\..\{File with sensitive info}
+1.Base form for Linux: {URL}?../../../../../{File with sensitive info} on web page or by curl 
+  Base form for Windows: {URL}?..\..\..\..\{File with sensitive info} on web page or by curl
 
 2.The suspect file that may contain Credentials:
 2-1.Linux:
