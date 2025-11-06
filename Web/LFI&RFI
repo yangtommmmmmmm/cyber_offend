@@ -15,7 +15,7 @@ After implementing, we could do below attack on web page or by curl:
 <URL>?../../../../../{vulnerability log path and name}
 
 
-2.If u want to implement above malicious code into '/var/log/apache2/access.log, u could use BurpSuite to do it.
+2.If u want to implement above malicious code into '/var/log/apache2/access.log, u could use BurpSuite-UserAgent to do it.
 (Please refer to LFI&RFI Burpsuite.md)
 
 After implementing, u coud do below attack: 
