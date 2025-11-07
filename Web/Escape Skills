@@ -1,3 +1,35 @@
 This section is mainly discussing how to escape the WAF or web server defend ways.
+Using below ways could let u escape.
 
-1.
+1.Linux/Windows Encoding:
+.Linux:UTF-8 (65001)
+.Windows:UTF-16LE (1200)
+
+2.Base64 Encoding
+
+3.URL Encoding:
+.%2e%2e%2f--->../
+.%2e%2e/--->../
+...%2f--->../
+.%2e%2e%5c--->..\
+.%2e%2e\--->..\
+...%5c--->..\
+.%252e%252e%255c--->..\
+...%255c--->..\
+...%c0%af--->../
+...%c1%9c--->..\
+
+4.Linux/Windows Encoding+Base64 Encoding
+5.URL Encoding+Base64 Encoding
+
+6.LFI escape:
+You can do PHP/Data wrapper on LFI exploit to escape IDS/IPS:
+https://notchxor.github.io/oscp-notes/2-web/LFI-RFI/
+
+7.CyberChef tool:
+You can infer 'CyberChef' section.
+
+8.Pwsh tool:
+You can infer 'pwsh' section.
+
+9.
