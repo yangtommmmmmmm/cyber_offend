@@ -48,3 +48,10 @@ You can infer 'Metaploitable' section
 
 12.Homograph URLs:
 Change some characters on URL similar to Greek or Europe characters to escape IDS/IPS.
+
+13.check on VIRUSTOTAL:
+U could pass your esploit on VIRUSTOTAL to let it check what IDS/IPS will detect your exploit.
+Then, u refer to the analysis result of detecting, and u re-design the exploit to escape this IDS/IPS.
+
+14.Shelter tool:
+You can infer 'Shelter' section.
