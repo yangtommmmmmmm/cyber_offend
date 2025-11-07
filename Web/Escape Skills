@@ -32,4 +32,19 @@ You can infer 'CyberChef' section.
 8.Pwsh tool:
 You can infer 'pwsh' section.
 
-9.
+9.File upload attack escape skills:
+9-1.Modify the filename extension:(php file as example)
+.php--->phps,php7,pHP,php.jpg
+9-2.Change the value of parameter "content-type" by Burpsuite.
+9-3.The skill resources:
+http://michalszalkowski.com/security/pentesting-web/file-upload-bypass-htaccess/#exploiting-htaccess-to-add-new-php-extension
+
+10.Hacktricks bypass:
+https://book.hacktricks.wiki/en/index.html
+You could infer above web resources to find out some escape skills.
+
+11.Metaploitable tool:
+You can infer 'Metaploitable' section
+
+12.Homograph URLs:
+Change some characters on URL similar to Greek or Europe characters to escape IDS/IPS.
