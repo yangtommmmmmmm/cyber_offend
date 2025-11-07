@@ -32,8 +32,8 @@ Step3.After input, u could do attack.
 .&&--->ping && ls, if ping fails, ls wouldn't active.
 
 3.When u input os command, u need to notice the escape characteristic.
-For example, as u input 1&&whoami, &&whoami will been deemed as an normal characteristic.So,
-if u modify to 1"&&whoami", &&whoami will not been deemed as an normal characteristic.
+For example, as u input 1&&whoami, &&whoami will been deemed as an normal characters.So,
+if u modify to 1"&&whoami", &&whoami will not been deemed as an normal characters.
 
 4.If the target is PHP Web Server, we could use "escapeshellarg()" or "escapeshellcmd()" to defend
 OS command injection.
