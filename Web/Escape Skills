@@ -55,3 +55,6 @@ Then, u refer to the analysis result of detecting, and u re-design the exploit t
 
 14.Shelter tool:
 You can infer 'Shelter' section.
+
+15.URL Escape:
+Change ../../../../../ to ..//..//..//..//..// to escape IDS/IPS.
