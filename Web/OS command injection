@@ -1,0 +1,39 @@
+This section is mainly talking about OS command injection attack.
+
+1.OS command injection Attack flow:
+Step1.Find the web page location where u could implement OS command.
+Step2.Input the common commands for OS command injection below:
+.Linux:
+*ls
+*mkdir
+*id
+*cat
+*ping
+
+.Windows:
+*dir
+*md--->setup directory
+*id
+*type
+*ping
+
+.PHP Function:
+*system---><?php system('ls'.$_GET['vul']);?>
+
+.Below resource would provide the OS command injection u can use:
+https://github.com/payloadbox/command-injection-payload-list
+
+Step3.After input, u could do attack.
+
+2.If u would like to link many command, u could do below:
+.;--->Terminate symbol.Ex:ping;ls
+.|--->pipe line symbol.It will let the second command use the output of the first command.
+.||--->ping || ls, if ping fails, ls would active.
+.&&--->ping && ls, if ping fails, ls wouldn't active.
+
+3.When u input os command, u need to notice the escape characteristic.
+For example, as u input 1&&whoami, &&whoami will been deemed as an normal characteristic.So,
+if u modify to 1"&&whoami", &&whoami will not been deemed as an normal characteristic.
+
+4.If the target is PHP Web Server, we could use "escapeshellarg()" or "escapeshellcmd()" to defend
+OS command injection.
