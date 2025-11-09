@@ -18,3 +18,5 @@ Step4.After logining, you could choice 'DVWA Security' to set the security postu
 
 
 The security posture of DVWA is Low, Medium, High and Impossible. 
+
+If u would like to test escape skills for web attack, u need to set the security posture of DVWA to Medium.
