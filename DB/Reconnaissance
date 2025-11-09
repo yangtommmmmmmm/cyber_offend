@@ -7,7 +7,7 @@ If u scan the target, u get below info, then u could infer what DBMS service the
 .PostgreSQL-5432, Tomcat Struc.
 
 And the structure of DBMS is:
-DBMS > DB > Table(Scheme) > Attribute(Column)、Record(Row)
+DBMS > DB > Scheme > Table > Attribute(Column)、Record(Row)
 
 1.MySQL's related command:
 1-1.MySQL [(none)]> select version(); #check the version
@@ -17,4 +17,10 @@ DBMS > DB > Table(Scheme) > Attribute(Column)、Record(Row)
 1-5.Another common MySQL command resource:
 https://dev.mysql.com/doc/refman/8.4/en/mysql.html
 
-2.MSSQL 
+2.MSSQL's related command:
+2-1.SQL (SQLPLAYGROUND\Administrator dbo@master)> SELECT @@version;
+2-2.SQL (SQLPLAYGROUND\Administrator dbo@master)> SELECT name FROM sys.databases; #check DB in DBMS
+2-3.SQL (SQLPLAYGROUND\Administrator dbo@master)> SELECT * FROM {DB_name}.information_schema.tables; #check all schemas and tables in DBMS
+2-4.SQL (SQLPLAYGROUND\Administrator dbo@master)> SELECT * FROM {DB_name}.{schema_name}.{table_name}; #check the data from table 
+2-5.Another common MSSQL command resource:
+https://github.com/sswietoniowski/learning-mssql
