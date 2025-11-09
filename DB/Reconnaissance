@@ -1,3 +1,14 @@
 How to judge the which DBMS services are enabled on the target?
 As u have finished scanning, u could get the information about the port that target enable.
 
+If u scan the target, u get below info, then u could infer what DBMS service the target provide:
+.MSSQL-1433, IIS Web Struc.
+.MySQL-3306/3346, Apache Struc.
+.PostgreSQL-5432, Tomcat Struc.
+
+And the structure of DBMS is:
+DBMS > DB > Table > Attribute(Column)、Record(Row)
+
+1.MySQL's related command:
+1-1.MySQL [(none)]> select version(); #check the version
+1-2.MySQL [(none)]> select system_user(); #check the administrator user
