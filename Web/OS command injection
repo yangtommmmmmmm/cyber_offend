@@ -37,3 +37,6 @@ if u modify to 1"&&whoami", &&whoami will not been deemed as an normal character
 
 4.If the target is PHP Web Server, we could use "escapeshellarg()" or "escapeshellcmd()" to defend
 OS command injection.
+
+5.Below is OS command injection list:
+https://github.com/payloadbox/command-injection-payload-list
