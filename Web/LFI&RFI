@@ -24,3 +24,6 @@ http://192.x.x.x/meteor/index.php?page=../../../../../var/log/apache2/access.log
 3.The vulnerability file lists for LFI:
 *Linux:https://github.com/DragonJAR/Security-Wordlist/blob/main/LFI-WordList-Linux
 *Windows:https://gist.github.com/korrosivesec/a339e376bae22fcfb7f858426094661e
+
+4.The payload list for LFI&RFI:
+https://github.com/payloadbox/rfi-lfi-payload-list
