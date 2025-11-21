@@ -58,7 +58,7 @@ Then,we browser to /var/www/html to run webshell with the RCE code that could re
 
 <img width="865" height="79" alt="image" src="https://github.com/user-attachments/assets/41d2e330-a79a-46da-9d98-a5393be42b89" />
 
-Finally, we got the target shell.
+Finally, we get the target shell.
 
 <img width="746" height="76" alt="image" src="https://github.com/user-attachments/assets/8f730d98-513d-4596-9e41-3f2a04f8afae" />
 
@@ -79,11 +79,29 @@ According to above, we can suspect 'weight'、'height'、'age'、'gender' and 'e
 According to above, we find the field-'height' that it could be implemented error-based SQL.Because as we type ' in this field to verify
 it, the server responds error message to us, so we could infer this field could be implemented SQL.
 
-Step3.After suspecting it, we could implement bypass-authentication based SQL to get the version of Postgre DBMS.
+Step3.After suspecting it, we could implement error-based SQL to get the version of Postgre DBMS.
 
 <img width="948" height="380" alt="image" src="https://github.com/user-attachments/assets/375e70c3-d6bd-4293-bcac-5455dc628e01" />
 
-Then, we couldn't get any response from Postgre DBMS.
+However, we couldn't get any response from Postgre DBMS.
 
-Step4.Then, we modify the way to implement bypass-authentication and Time-based SQL on 'height' to check it.
+Step4.Then, we modify the way to implement Time-based SQL on 'height' to check it.
+
+<img width="991" height="467" alt="image" src="https://github.com/user-attachments/assets/a5989db1-17d5-4474-8746-40e781eb73b3" />
+
+As we finish implementing, we get response after 20 seconds.So, we could infer this field actually could be implemented SQL.
+
+Step5.We open monitor port 4444 to get the reverse shell from the target.
+
+<img width="400" height="108" alt="image" src="https://github.com/user-attachments/assets/b8ea73c6-6435-4a6d-b8e4-d5ae9afc833f" />
+
+Then,we implement postgre-reverse shell command on the 'height' field.
+
+<img width="979" height="481" alt="image" src="https://github.com/user-attachments/assets/9c4cb734-4b91-4852-bc83-fc8830e571c9" />
+
+Finally, we get the target shell.
+
+<img width="963" height="156" alt="image" src="https://github.com/user-attachments/assets/ee82e2c1-fbbc-4d00-b985-1fa47a6f4659" />
+
+3.MSSQL-SQLi-RCE:
 
