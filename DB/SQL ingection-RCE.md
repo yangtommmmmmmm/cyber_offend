@@ -65,4 +65,25 @@ Finally, we got the target shell.
 
 2.Postgre-SQLi-RCE:
 
+Step1.Find the any entry point of the web where we could inject SQL.
+
+Step2.Open Burpsuite to cache 'POST' request.Then, click 'Send to Repeater' to  find the furher
+place where SQL could inject.
+
+<img width="848" height="517" alt="image" src="https://github.com/user-attachments/assets/c619a0fb-af73-47fd-8296-696b0fea8c2a" />
+
+According to above, we can suspect 'weight'、'height'、'age'、'gender' and 'email' where it could be implemented error-based SQL.So we type ' in each field to verify it.If server responds 200 HTTP status code and error message to us, we could infer it could be implemented SQL.
+
+<img width="970" height="457" alt="image" src="https://github.com/user-attachments/assets/2087545b-b6fa-485f-bb1a-81be380c4313" />
+
+According to above, we find the field-'height' that it could be implemented error-based SQL.Because as we type ' in this field to verify
+it, the server responds error message to us, so we could infer this field could be implemented SQL.
+
+Step3.After suspecting it, we could implement bypass-authentication based SQL to get the version of Postgre DBMS.
+
+<img width="948" height="380" alt="image" src="https://github.com/user-attachments/assets/375e70c3-d6bd-4293-bcac-5455dc628e01" />
+
+Then, we couldn't get any response from Postgre DBMS.
+
+Step4.Then, we modify the way to implement bypass-authentication and Time-based SQL on 'height' to check it.
 
