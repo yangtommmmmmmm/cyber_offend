@@ -110,3 +110,87 @@ Step1.Also find the any entry point of the web where we could inject SQL.
 Step2.Open Burpsuite to cache 'POST' request.Then, click 'Send to Repeater' to  find the furher
 place where SQL could inject.
 
+<img width="831" height="387" alt="image" src="https://github.com/user-attachments/assets/602c3fcc-b7dc-4f8b-8262-8e42d63130cd" />
+
+According to above, we can suspect '_VIEWSTATE'、'_VIEWSTATEGENERATOR'、'_EVENTVALIDATION'、'UsernameTextBox'、'PasswordTextBox' and 'LoginButton' where it could be implemented error-based SQL.So we type ' in each field to verify it.If server responds 200 HTTP status code and error message to us, we could infer it could be implemented SQL.
+
+(Because our target DBMS is MSSQL, so we need to do "UTF-16LE(1200)","Base64-Encode" and "URL-Encode" on our SQL command.Thus, ' should be url-encoded to %27)
+
+<img width="825" height="398" alt="image" src="https://github.com/user-attachments/assets/e66b66ef-81a9-4e5e-9da4-a3e6ee3dc58f" />
+
+After implementing,we can find the field-'UsernameTextBox' that could be implement SQLi.
+
+Step3.After suspecting it, we could implement error-based SQL to get the version of MSSQL DBMS.
+
+First,we need to url-encode on ';SELECT @@version;-- -.
+
+<img width="534" height="407" alt="image" src="https://github.com/user-attachments/assets/7917c5ed-3a9e-4c1d-85dc-db47b47111af" />
+
+Then,we inject this encoded command on the field-'UsernameTextBox'.
+
+<img width="832" height="433" alt="image" src="https://github.com/user-attachments/assets/73498d04-74f5-481e-b824-72087f967579" />
+
+However,we can't get response.So,we change our way to inject Time-based SQL on this field to check it.
+
+We do url-encode on ';WAITFOR DELAY '0:0:20';-- -.
+
+<img width="525" height="413" alt="image" src="https://github.com/user-attachments/assets/55602c43-1907-40f5-9e62-fd18c0f3bfb9" />
+
+<img width="819" height="399" alt="image" src="https://github.com/user-attachments/assets/0f0a3585-f275-4670-a7c6-43732b9e2773" />
+
+After injecting, we get response after 20 seconds.So, we could infer this field actually could be implemented SQL.
+
+Step4.Now, we can do below process to do RCE:
+
+Step4-1.First,inject below command to trigger xp_cmdshell.
+
+<img width="751" height="607" alt="image" src="https://github.com/user-attachments/assets/7fcb5329-230c-4063-aefe-92641eb931ef" />
+
+<img width="777" height="481" alt="image" src="https://github.com/user-attachments/assets/bcb7ec76-b856-4785-927b-71ffa2789574" />
+
+Step4-2.Inject reconfigure command to re-configure it.
+
+<img width="732" height="555" alt="image" src="https://github.com/user-attachments/assets/4dfc2cc6-4868-4852-9fc3-8e6bd299b419" />
+
+<img width="753" height="422" alt="image" src="https://github.com/user-attachments/assets/28ec0bd1-bba2-4f4b-82c3-615dd8a700a6" />
+
+Step4-3.Inject the command which could set 'xp_cmdshell' to 1.
+
+<img width="771" height="617" alt="image" src="https://github.com/user-attachments/assets/f6f5875d-389f-458b-b8a7-28356a5b6878" />
+
+<img width="804" height="526" alt="image" src="https://github.com/user-attachments/assets/631377f8-0b0c-4a37-b7fe-ffd03f32c227" />
+
+Step4-4.Inject reconfigure command to re-configure it again.
+
+<img width="770" height="587" alt="image" src="https://github.com/user-attachments/assets/70d95ed1-d70b-4144-b31b-b41307442496" />
+
+<img width="802" height="521" alt="image" src="https://github.com/user-attachments/assets/abdcb8f9-de6d-4f5b-bce7-f5a670f74006" />
+
+Step4-5.Then,we trigger the xp_cmdshell.
+
+Step4-6.We open monitor port 4444 to get the reverse shell from the target.
+
+<img width="350" height="84" alt="image" src="https://github.com/user-attachments/assets/6f24b2e7-d46b-44cb-89f7-7950ba2a7671" />
+
+Then,we do below procedures to inject RCE command on the field-'UsernameText'.
+
+Step4-5-1.Generating powershell RCE command which is encoeded by "UTF-16LE(1200)" and "Base64-Encode".
+
+<img width="807" height="543" alt="image" src="https://github.com/user-attachments/assets/ad3eff51-6bd6-4146-bac3-8be42cfd0d69" />
+
+Step4-5-2.Then,we do url-encode on 'EXEC xp_cmdshell ''-- -.
+
+<img width="756" height="597" alt="image" src="https://github.com/user-attachments/assets/dfb1ca3c-fe6c-42c0-a172-b1b5e8c8c20f" />
+
+(Sometimes, in SQLi, ; symbol shoud be added after ' symbol.But sometimes you don't need to add ; symbol after ' symbol.)
+
+Step4-5-3.Afer above procedures, we wrap the powershell RCE command in the URL-encoded xp_cmdshell and inject it to the field-'UsernameText'.
+
+<img width="778" height="484" alt="image" src="https://github.com/user-attachments/assets/a552c88b-5505-42cd-b50f-0fd64c79b80c" />
+
+Step4-5-6.Finally,we send this SQLi to the target, then we get the shell of it.
+
+<img width="794" height="447" alt="image" src="https://github.com/user-attachments/assets/f8e4664d-f715-49e4-9902-5fd334fdc373" />
+
+
+Above is the brief how to do MySQL,PostgreSQL and MSSQL RCE.
