@@ -105,3 +105,8 @@ Finally, we get the target shell.
 
 3.MSSQL-SQLi-RCE:
 
+Step1.Also find the any entry point of the web where we could inject SQL.
+
+Step2.Open Burpsuite to cache 'POST' request.Then, click 'Send to Repeater' to  find the furher
+place where SQL could inject.
+
