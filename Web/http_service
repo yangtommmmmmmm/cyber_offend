@@ -1,2 +1,4 @@
 This part is mainly discussed about how to trigger 'HTTP' service on Kali.
 
+1.python3 -m http.server 8000
+2.python2 -m SimpleHTTPServer 8000
