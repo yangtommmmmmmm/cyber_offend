@@ -4,6 +4,8 @@ Reverse shell attack is that attacker opens the port on its attack host, then th
 connect to the port of the attack host actively.As attacker gets the shell of the target, then attacker can control and access the
 resource of the target.
 
+*console(TTY/PTY)(Outter,I/O physical layer or virtual layer)--->Shell(Inner)
+
 1.The command on the attack host:
 nc -lvnp {port_number}
 
