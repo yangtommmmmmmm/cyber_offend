@@ -193,4 +193,16 @@ Step4-5-6.Finally,we send this SQLi to the target, then we get the shell of it.
 <img width="794" height="447" alt="image" src="https://github.com/user-attachments/assets/f8e4664d-f715-49e4-9902-5fd334fdc373" />
 
 
+4.MySQL-reverse shell resource:
+
+https://medium.com/@tareshsharma17/simple-php-reverse-shell-061d4a6bd18d
+
+5.MSSQL-reverse shell resource:
+
+https://www.invicti.com/blog/web-security/sql-injection-cheat-sheet/
+
+https://www.hackingarticles.in/mssql-for-pentester-command-execution-with-xp_cmdshell/
+
+https://medium.com/@alokkumar0200/owning-a-machine-using-xp-cmdshell-via-sql-injection-manual-approach-a380a5e2a340
+
 Above is the brief how to do MySQL,PostgreSQL and MSSQL RCE.
