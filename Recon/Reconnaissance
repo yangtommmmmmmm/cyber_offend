@@ -1,0 +1,43 @@
+There are skilled tips for reconnaissance.
+
+1.whoiis:
+It's for searching the dns server-name,register, manage staff, technical staff and registration for the target.
+1-1.terminal command:whois {the domain name of the target} -h {whois_server_ip}
+1-2.Online whois resources:
+https://who.is/
+https://www.whois.com/whois/
+
+2.Google Hacking:
+It's a skill for searching public information about the target by google browser.
+2-1.site:{the domain of the target}
+2-2.site:{the domain of the target} filetype:txt/html
+2-3.intitile:"index of" "parent directory"--->could find the web server resources
+2-4.Online Google Hacking resources:
+https://www.exploit-db.com/google-hacking-database
+https://dorksearch.com/
+
+3.Netcraft:
+It's a skill for searching the frontend/backend skills of the target.
+3-1.Online Netcraft resources:
+https://searchdns.netcraft.com/
+
+4.Shodan:
+It's also a skill for searching the public information about the target's domain.
+4-1.Online Shodan resources:
+https://www.shodan.io/--->In this platform, if u input,'hostname {the target's domain}', then click 'view
+report', you could get as much as information.
+
+5.Dumpster:
+It's a skill for searching the DNS record of the target's domain.
+5-1.Online Dumpster resources:
+https://dnsdumpster.com/
+
+6.Web Wappalyzer:
+It's a skill for searching the information of the web server.
+6-1.Online Web Wappalyzer resources:
+https://www.wappalyzer.com/
+
+7.exiftool:
+This tool is for searching the metadata of the target's file.
+7-1.terminal command:exiftool -a -u {the target's file}
+                                                                
