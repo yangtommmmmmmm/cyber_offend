@@ -1,0 +1,101 @@
+There are skills for enumeration.It's very important section of it!
+
+1.Netcat:
+It's a tool for scanning the open,filter or closed port.
+1-1.TCP:
+nc -nvv -w 1 -z 192.168.a.b 3388-3390
+.w is for the timeout of scanning.z is for zero-I/O mode.
+1-2.UDP:
+nc -nv -u -w 1 -z 192.168.a.b 120-123
+
+2.Nmap:
+It's a powerful tool for scanning the host,port and service info of the target.
+2-1.Host Discovery:Find the alive hosts in the domain.
+2-1-1.nmap -sn 192.168.143.* -oG - | grep Up | cut -d' ' -f2 > ip_list.txt
+2-1-2.nmap -sn -PS22,80,139,445,3389 192.168.143.1-254 -oG - | grep Up | cut -d' ' -f2 > ip_list.txt
+2-1-3.sudo nmap -n -sn -PS22,80,139,445,3389 192.168.143.1-254 -oG ip_list.txt
+      grep Up ip_list.txt | cut -d"" -f2
+Note:Port 22 and 80 are the primary protocols for logging Linux.And Port 139(legacy SMB),445(modern 
+SMB),3389(RDP) are the primary protocols for getting the info of Windows or remotely logging Windows.
+2-1-4.for i in {1-254};do (ping -c 192.168.143.$i | grep "bytes from" &);done
+2-1-5.for i in {1-254};do (nmap {-sT/-sS/-sU} 192.168.143.$i -p {specific ports range for scanning});done
+2-1-6.nmap -sn 192.168.143.1-254 -oG - | grep Up
+
+2-2.Port,Service Discovery:Find the Port and Service of the host in the domain.
+2-2-1.TCP Connect scanning:
+.nmap 192.168.143.6--->default for TCP Connet scanning
+.nmap -sT 192.168.143.6
+2-2-2.TCP SYN scanning:
+.nmap -sS 192.168.143.6
+2-2-3.UDP scanning:(You need do it in the priviledged situation)
+.sudo nmap -sU 192.168.143.6
+---------------------------------------------------------------------------------------------------
+2-2-4.If u only would like to scan the specific range of ports, u could add below parameters:
+-p 1-1024
+But if u would like to scan the ports which are after 1024, then u could add below:
+-p 1024-
+If u would like to scan the ports which are before 1024, then u could add below:
+-p -1024
+If u would like to scan for the all ports, then u could add below:
+-p -
+If u don't define the specific scanning range, sometimes it only scans for 1-1000 ports by default.
+---------------------------------------------------------------------------------------------------
+2-2-5.Another nmap parameters for scanning:
+.-sV:scan for service version
+.-O:scan for OS
+.-sC:scan for the scripts which the target run
+.--open:scan for open ports
+.-A:All functionally scanning
+
+Note1:After u scans the ports,services for the target host, u don't what service it is, u could go to
+below web to search some information about it:
+https://book.hacktricks.xyz/
+
+Note2:If u scans the host to get few ports, this host is maybe a modern host.However, if u scans the hsot to
+get many ports, it's maybe a legacy host.
+
+Note3:Sometimes,the services identified by the scan may not be consistent with their corresponding protocols.
+For example, the protocol of HTTP service is not 80, is 8080.This is something to be aware of!
+
+2-2-6.nmap -sn 192.168.143.6 -n -Pn -sVC
+2-2-7.You could use NSE scripts(which located in /usr/share/nmap/scripts/) to enhance nmap's function.
+nmap --script {NSE_script_name} 192.168.143.6
+
+3.Rustscan:
+It's a very huge powerful tool for scanning the host,port and service info of the target.
+Step1.Go to the below resource to download the rustscan compressed file.
+https://github.com/RustScan/RustScan/releases
+Step2.Then,do below command to decompress the file:
+sudo dpkg -i Downloads/rustscan_2.3.0_amd64.deb
+Step3.After decompressing, u could do below command to enumerate.
+.rustscan -u 5000 -t 8000 --scripts none -a 192.168.213.152 -p 80--->scan for the open port 80 of 192.168.213.512
+.rustscan -u 5000 -t 8000 --scripts none -a 192.168.213.0/24 -p 80--->scan for the open port 80 in 192.168.213.0/24 domain
+.rustscan -u 5000 -t 8000 --scripts none -a {192.168.213.152||192.168.213.0/24}--->scan for the open port in 1-8000 on 192.168.213.152 or in 192.168.213.0/24 domain
+Note:5000 means u only gets 5000 ports info, 8000 means u scans for 1-8000 ports.
+.rustscan -u 5000 -t 8000 -a {192.168.213.152||192.168.213.0/24} -- -n -Pn -sVC--->rustscan+nmap powerful command!!!
+.rustscan -u 5000 -t 8000 -a {192.168.213.152||192.168.213.0/24} -- -n -Pn -sVC -oA 7_host
+
+4.Powershell Scanning:
+This is a tool for scanning the target on the Windows-Powershell.
+Step1.Download Invoke-Parallel.ps1 and Invoke-Ping.ps1 to kali.
+Download point:
+.Invoke-Parallel.ps1:https://raw.githubusercontent.com/RamblingCookieMonster/Invoke-Parallel/master/Invoke-Parallel/Invoke-Parallel.ps1
+.Invoke-Ping.ps1:https://raw.githubusercontent.com/RamblingCookieMonster/PowerShell/master/Invoke-Ping.ps1
+
+Step2.Trigger the SMB service on kali:
+$impacket-smbserver -smb2support -user student -password lab share .
+Step3.Then, remotely login to Windows,let Windows-powershell connect to kali.
+net use \\{kali_ipv4}
+Step4.After connecting,copy Invoke-Parallel.ps1 and Invoke-Ping.ps1 to Windows-powershell.
+copy \\{kali_ipv4\share\Invoke-Parallel.ps1}
+copy \\{kali_ipv4\share\Invoke-Ping.ps1}
+Step5.Then,input below command to bypass the restriction of powershell.
+powershell -ep bypass
+Step6.Do below scripts on powershell.
+.\Invoke-Parallel.ps1
+.\Invoke-Ping.ps1
+Step7.Finally,u could do scanning on Windows-powershell.
+.1...254|%{"10.0.1.$_"}
+.Measure-Command {
+Invoke-Ping (1..254 | % {"192.168.190.$_"}) -Quiet -Timeout 40 -throttle 200
+} | Select -Property TotalSeconds
