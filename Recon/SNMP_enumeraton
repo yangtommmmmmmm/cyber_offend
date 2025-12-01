@@ -36,5 +36,5 @@ snmpwalk {options} {the ipv4 address for the agent of the maanged network device
 *-oA:Transfer the form of result to ASCII.
 
 3-3.sudo nmap 192.168.220.153 -sU -p 161 --script snmp-win32-users
-This command could enumerate the users of the host.
+This command could enumerate the SNMP-service users of the host.
 
