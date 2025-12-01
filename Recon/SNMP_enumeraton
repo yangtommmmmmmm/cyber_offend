@@ -1,1 +1,40 @@
+This part is mainly discussed about SNMP service.
+As u scans the host,u gets UDP-161,UDP-162,then the host provides SNMP service.
+
+1.SNMP protocol walkthrough:
+1-1.The SNMP Server---(request for relevant info from the managed network device by UDP-161)--->The agent of the managed network devices
+The agent of the managed network devices receive the request by UDP-162.
+1-2.The agent of the managed network devices---(transimit its relevant info and TRAP to the SNMP Server by UDP-161)--->The SNMP Server
+The SNMP Server receives the response by UDP-162.
+1-3.The agent of the managed network devices will store the relevant info in MIB(The SNMP Management Information Base).Each
+information has the corresponding OID.
+
+2.If the SNMP Server and the managed network devices are supported for SNMPv1,v2,user needs to input 'Community-public,private
+and manager' to request the info from MIB.However,if the snmp server and the managed network devices are supported for SNMPv3,user needs to
+input 'username/password' to request the info from MIB.
+Note: If user inputs 'Community Name-public' to request the info from MIB,the respond info is read-only.But if user inputs
+'Community-private' to request the info from MIB,the respond info is not only readable but also writeable.
+
+3.Offender sometimes requires the info from MIB to get more detailed info.So,Offender could use below command to fulfill it:
+3-1.Onesixtyone:
+onesixtyone {options} {Host/-i Host_file} {Community/-c Community_file}
+.The value of Host is for the ipv4 address or ipv4 address range for the managed network devices.
+.Host_file contains a list of the ipv4 address of the managed network devices.
+.The value of Community is for the MIB tree-community name of the managed network devices.
+.Community_file contains a list of the MIB tree-community name of the managed network devices.
+.options:
+*-o:generate the output file
+*-w:define the scanning time
+
+3-2.Snmpwalk:
+snmpwalk {options} {the ipv4 address for the agent of the maanged network device} {OID}
+.options:
+*-v:-v1->version1;-v2c->version2;-v3->version3
+*-t:the delay of connection
+*-c:the MIB tree name-Community name of the managed network device.Mainly for SNMPv1,SNMPv2.
+*-u/-A:the username/password for the managed network devices.Mainly for SNMPv3.
+*-oA:Transfer the form of result to ASCII.
+
+3-3.sudo nmap 192.168.220.153 -sU -p 161 --script snmp-win32-users
+This command could enumerate the users of the host.
 
