@@ -13,13 +13,18 @@ SMBv3:support for encrypting
 .-1.nmap 192.168.0.1-254 -p135,139,445 --open -oG - | grep Up | cut -d' ' -f2 > smb_list
 *This result host is maybe Windows or Linux.
 
-.nxc:
+.nxc (aka netexec):
 .-1.nxc smb smb_list
+*How to install nxc tool?
+Step1.sudo apt update
+Step2.sudo apt install pipx git
+Step3.pipx ensurepath pipx install git+https://github.com/Pennyw0rth/NetExec
 *Sometimes you need to input your account/password to use this command,so u need to add below parameters:
 -u student -p lab
 -u student -p lab --local-auth
 *According to the result,if the value of 'name' is different from the value of 'domain',we could infer this host is
 DC (Domain Controller).
+
 
 .smbclient:
 .-1.for ip in $(cat smb_list); do (echo $ip; echo; smbclient -N -L $ip echo); done
