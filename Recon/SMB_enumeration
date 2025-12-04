@@ -1,1 +1,16 @@
+This part is mainly talking about the enumeration of SMB service.It's a very important section.
+1.SMB service:
+SMB service, called 'Server Message Block', is for sharing files with each host.
+1-1.Windows-TCP 135/139(legacy),TCP 445(modern)
+    Linux-TCP 139(legacy),TCP 445(modern)
+1-2.SMBv1:plaintext transferring;SMBv2:digital certificate(but it didn't work in default way);
+SMBv3:support for encrypting
+1-3.How to share them? Please check 'Transfer File Techs' section.
 
+2.Enumeration:
+2-1.Check which host has SMB service.
+.nmap:
+.-1.nmap 192.168.0.1-254 -p135,139,445 --open -oG - | grep Up | cut -d' ' -f2 > smb_list
+*This result host is maybe Windows or Linux.
+.nxc:
+.-1.nxc smb smb_list
