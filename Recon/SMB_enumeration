@@ -12,5 +12,18 @@ SMBv3:support for encrypting
 .nmap:
 .-1.nmap 192.168.0.1-254 -p135,139,445 --open -oG - | grep Up | cut -d' ' -f2 > smb_list
 *This result host is maybe Windows or Linux.
+
 .nxc:
 .-1.nxc smb smb_list
+*Sometimes you need to input your account/password to use this command,so u need to add below parameters:
+-u student -p lab
+-u student -p lab --local-auth
+*According to the result,if the value of 'name' is different from the value of 'domain',we could infer this host is
+DC (Domain Controller).
+
+.smbclient:
+.-1.for ip in $(cat smb_list); do (echo $ip; echo; smbclient -N -L $ip echo); done
+--->In addition to find out which host has SMB service, it could also find out which host alows anonymous login to use SMB service.
+
+2-2.Enumerate the info from the hosts with SMB service:
+
