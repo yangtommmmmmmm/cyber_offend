@@ -17,26 +17,29 @@ Note: If user inputs 'Community Name-public' to request the info from MIB,the re
 
 3.Offender sometimes requires the info from MIB to get more detailed info.So,Offender could use below command to fulfill it:
 3-1.Check which host has SNMP service:
+.nmap 192.168.0.1-254 -p161,162 --open -oG - | grep Up | cut -d' ' -f2 > snmp_list
+.snmp-check 192.168.0.20
+.onesixtyone -i snmp_list public
 
-3-1.Onesixtyone:
-onesixtyone {options} {Host/-i Host_file} {Community/-c Community_file}
-.The value of Host is for the ipv4 address or ipv4 address range for the managed network devices.
-.Host_file contains a list of the ipv4 address of the managed network devices.
-.The value of Community is for the MIB tree-community name of the managed network devices.
-.Community_file contains a list of the MIB tree-community name of the managed network devices.
-.options:
-*-o:generate the output file
-*-w:define the scanning time
+3-2.Onesixtyone:
+.onesixtyone {options} {Host/-i Host_file} {Community/-c Community_file}
+*The value of Host is for the ipv4 address or ipv4 address range for the managed network devices.
+*Host_file contains a list of the ipv4 address of the managed network devices.
+*The value of Community is for the MIB tree-community name of the managed network devices.
+*Community_file contains a list of the MIB tree-community name of the managed network devices.
+*options:
+^-o:generate the output file
+^-w:define the scanning time
 
-3-2.Snmpwalk:
-snmpwalk {options} {the ipv4 address for the agent of the maanged network device} {OID}
-.options:
-*-v:-v1->version1;-v2c->version2;-v3->version3
-*-t:the delay of connection
-*-c:the MIB tree name-Community name of the managed network device.Mainly for SNMPv1,SNMPv2.
-*-u/-A:the username/password for the managed network devices.Mainly for SNMPv3.
-*-oA:Transfer the form of result to ASCII.
+3-3.Snmpwalk:
+.snmpwalk {options} {the ipv4 address for the agent of the maanged network device} {OID}
+*options:
+^-v:-v1->version1;-v2c->version2;-v3->version3
+^-t:the delay of connection
+^-c:the MIB tree name-Community name of the managed network device.Mainly for SNMPv1,SNMPv2.
+^-u/-A:the username/password for the managed network devices.Mainly for SNMPv3.
+^-oA:Transfer the form of result to ASCII.
 
-3-3.sudo nmap 192.168.220.153 -sU -p 161 --script snmp-win32-users
+3-4.sudo nmap 192.168.220.153 -sU -p161 --script snmp-win32-users
 This command could enumerate the SNMP-service users of the host.
 
