@@ -24,6 +24,7 @@ Step3.pipx ensurepath pipx install git+https://github.com/Pennyw0rth/NetExec
 -u student -p lab --local-auth
 *According to the result,if the value of 'name' is different from the value of 'domain',we could infer this host is
 DC (Domain Controller).
+*Refer to the result, the value of OS sometimes is error.
 
 
 .smbclient:
