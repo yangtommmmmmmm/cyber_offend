@@ -16,6 +16,8 @@ Note: If user inputs 'Community Name-public' to request the info from MIB,the re
 'Community-private' to request the info from MIB,the respond info is not only readable but also writeable.
 
 3.Offender sometimes requires the info from MIB to get more detailed info.So,Offender could use below command to fulfill it:
+3-1.Check which host has SNMP service:
+
 3-1.Onesixtyone:
 onesixtyone {options} {Host/-i Host_file} {Community/-c Community_file}
 .The value of Host is for the ipv4 address or ipv4 address range for the managed network devices.
