@@ -2,8 +2,11 @@ This part is mainly discussed about SMTP enumeration.
 1.SMTP service is for sending the mail,and its port is TCP-25.
 Then, POP3,IMAP service is for collecting the mail,and their corresponding ports are TCP-110, TCP-143.
 
-2.Sometimes,we would like to enumerate the SMTP info from SMTP Server for disclosing some sensitive info.So we could do below ways to enumerate them:
-2-1.On the SMTP Server:
+2.Check which host has SMTP service:
+.nmap 192.168.0.1-254 -p25 --open -oG - | grep Up | cut -d' ' -f2 > smtp_list
+
+3.Sometimes,we would like to enumerate the SMTP info from SMTP Server for disclosing some sensitive info.So we could do below ways to enumerate them:
+3-1.On the SMTP Server:
 Step1.telnet to SMTP Server:
 .If u telnet it from Kali:telnet 192.168.220.18 25
 .If u telnet it from Windows:(You need to do below commands in administrator identity)
@@ -16,12 +19,12 @@ VRFY {account_name}--->If this account exists on this server,the result of it wi
 if this account doesn't exist on it,the result of it will show 'Recipient address rejected'.
 Step3.Finally,you could type 'quit' to leave this environment.
 
-2-2.On the attacker-Kali:
+3-2.On the attacker-Kali:
 Do below kali command to enumerate the info, such as how many accounts in this server or mail records from SMTP server:
 $smtp-user-enum -M [VRFY/EXPN] -[u {single account name}/U {account_name_file}] -t [SMTP server IPv4]
 *If u didn't specify -M parameter, this command would use VRFY mode to verify the account. 
 
-3.How to send the mail by SMTP protocol?
+4.How to send the mail by SMTP protocol?
 $sudo swaks -t john@nxsist.com --from mary@nxsist.com --attach @config.Library-ms --server 192.168.220.18 --body @body.txt
 --header "Subject:Staging script" --suppress-data -ap
 *-t {receiver's mail address}
